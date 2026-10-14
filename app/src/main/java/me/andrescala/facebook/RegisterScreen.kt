@@ -19,21 +19,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
-@Preview
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun FacebookRegisterScreenPreview() {
-    FacebookRegisterScreen()
-}
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FacebookRegisterScreen(
-    onBackClick: () -> Unit = {},
-    onRegisterClick: () -> Unit = {},
-    onLoginRedirect: () -> Unit = {}
-) {
+fun FacebookRegisterScreen(navController: NavController) {
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
     var emailOrPhone by remember { mutableStateOf("") }
@@ -48,7 +39,9 @@ fun FacebookRegisterScreen(
             TopAppBar(
                 title = { },
                 navigationIcon = {
-                    IconButton(onClick = onBackClick) {
+                    IconButton(onClick = {
+                        navController.popBackStack()
+                    }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "Ir atrás"
@@ -199,7 +192,7 @@ fun FacebookRegisterScreen(
 
             // Botón Registrarse
             Button(
-                onClick = onRegisterClick,
+                onClick = {},
                 colors = ButtonDefaults.buttonColors(containerColor = FacebookBlue),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -216,7 +209,7 @@ fun FacebookRegisterScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             // Ir a Iniciar sesión
-            TextButton(onClick = onLoginRedirect) {
+            TextButton(onClick = {}) {
                 Text(
                     text = "¿Ya tienes una cuenta?",
                     color = FacebookBlue

@@ -33,11 +33,7 @@ class MainActivity : ComponentActivity() {
                     FacebookLoginScreen(navController = myNavController)
                 }
                 composable(route = "register") {
-                    FacebookRegisterScreen(
-                        onBackClick = { myNavController.popBackStack() },
-                        onRegisterClick = { myNavController.popBackStack() },
-                        onLoginRedirect = { myNavController.popBackStack() }
-                    )
+                    FacebookRegisterScreen(navController = myNavController)
                 }
             }
         }
